@@ -1,0 +1,61 @@
+---
+permalink: protect-scsql/concept_snapcenter_plug_in_for_microsoft_sql_server_features.html 
+sidebar: sidebar 
+keywords: SnapCenter Plug-in for Microsoft SQL Server 
+summary: 適用於 SQL Server 的外掛程式可與 Windows 主機上的 Microsoft SQL Server 整合、並可與儲存系統上的 NetApp Snapshot 技術整合。若要搭配SQL Server外掛程式使用、請使用SnapCenter 支援此功能的支援介面。 
+---
+= 適用於Microsoft SQL Server功能的支援外掛程式SnapCenter
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+適用於 SQL Server 的外掛程式可與 Windows 主機上的 Microsoft SQL Server 整合、並可與儲存系統上的 NetApp Snapshot 技術整合。若要搭配SQL Server外掛程式使用、請使用SnapCenter 支援此功能的支援介面。
+
+適用於SQL Server的外掛程式包含下列主要功能：
+
+* *統一化圖形化使用者介面、採用SnapCenter S基 準*技術
++
+透過這個支援介面、您可以在外掛程式和環境之間實現標準化和一致性。SnapCenter利用此支援介面、您可以跨外掛程式完成一致的備份與還原程序、使用集中式報告、使用概覽儀表板檢視、設定角色型存取控制（RBAC）、以及監控所有外掛程式的工作。SnapCenter此外、還提供集中化的排程與原則管理功能、以支援備份與複製作業。SnapCenter
+
+* *自動化中央管理*
++
+您可以排程例行SQL Server備份、設定原則型備份保留、以及設定時間點與最新還原作業。您也可以透過設定SnapCenter 功能以傳送電子郵件警示、主動監控SQL Server環境。
+
+* * 不中斷的 NetApp Snapshot 技術 *
++
+適用於 SQL Server 的外掛程式使用 NetApp Snapshot 技術搭配適用於 Microsoft Windows 的 NetApp SnapCenter 外掛程式。這可讓您在數秒內備份資料庫、並快速還原資料庫、而無需讓SQL Server離線。快照消耗的儲存空間最小。
+
+
+
+除了這些主要功能之外、適用於SQL Server的外掛程式還提供下列優點：
+
+* 備份、還原、複製及驗證工作流程支援
+* RBAC支援的安全性與集中式角色委派
+* 使用NetApp FlexClone技術建立具空間效益的生產資料庫時間點複本、以供測試或資料擷取之用
++
+持有該實體複本的儲存系統需要FlexClone授權。
+
+* 不中斷營運且自動化的備份驗證
+* 能夠在多個伺服器上同時執行多個備份
+* PowerShell Cmdlet可執行備份、驗證、還原及複製作業的指令碼
+* 支援SQL Server中的AlwaysOn Availability群組（AGS）、以加速AG設定、備份及還原作業
+* 做為SQL Server 2014一部分的記憶體內建資料庫和緩衝資源池擴充（BPE）
+* 支援LUN和虛擬機器磁碟（VMDK）的備份
+* 支援實體與虛擬化基礎架構
+* 支援iSCSI、Fibre Channel、FCoE、原始裝置對應（RDM）、以及NFS和VMFS上的VMDK
++
+
+NOTE: NAS磁碟區應在儲存虛擬機器（SVM）中具有預設的匯出原則。
+
+* 支援SQL Server獨立式資料庫中的FileStream和檔案群組。
+* 支援 Windows Server 2022 上的非揮發性記憶體高速（ NVMe ）
++
+** 在 NVMe over TCP/IP 上建立的 VMDK 配置上備份、還原、複製及驗證工作流程。
+** 支援從 ESX 8.0 更新 2 開始的 NVMe 韌體 1.3 版、並需要 Virtual Hardware 版本 21 。
+** Windows Server 容錯移轉叢集（ WSFC ）不支援透過 VMDK 在 NVMe over TCP/IP 上執行的應用程式。
+
+
+* 支援 SnapMirror 主動式同步（最初以 SnapMirror Business Continuity [SM-BC] 發行）、即使整個站台發生故障、商業服務也能繼續運作、支援應用程式使用次要複本進行透明容錯移轉。使用 SnapMirror 主動式同步觸發容錯移轉時、不需要手動介入或額外的指令碼處理。
+

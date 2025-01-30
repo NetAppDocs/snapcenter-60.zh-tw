@@ -1,0 +1,188 @@
+---
+permalink: protect-scw/task_restore_windows_file_system_backups.html 
+sidebar: sidebar 
+keywords: restore 
+summary: 您可以使用SnapCenter 還原功能來還原檔案系統備份。檔案系統還原是一個多階段程序、可將所有資料從指定的備份複製到檔案系統的原始位置。 
+---
+= 還原Windows檔案系統備份
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用SnapCenter 還原功能來還原檔案系統備份。檔案系統還原是一個多階段程序、可將所有資料從指定的備份複製到檔案系統的原始位置。
+
+.開始之前
+* 您必須備份檔案系統。
+* 如果檔案系統目前正在進行排程的作業（例如備份作業）、則必須先取消該作業、才能開始還原作業。
+* 您只能將檔案系統備份還原至原始位置、而不能還原至替代路徑。
++
+您無法從備份還原單一檔案、因為還原的檔案系統會覆寫檔案系統原始位置上的任何資料。若要從檔案系統備份還原單一檔案、您必須複製備份並存取複本中的檔案。
+
+* 您無法還原系統或開機磁碟區。
+* 無需將叢集群組離線、即可在Windows叢集中還原檔案系統。SnapCenter
+
+
+.關於這項工作
+* 可使用外掛主機SMCoreServiceHost.exe.Config檔案中的PredefinedWindows指令碼目錄金鑰來定義指令碼路徑。
++
+如有需要、您可以變更此路徑並重新啟動SMcore服務。建議您使用預設的安全路徑。
+
++
+金鑰的值可透過API：API /4.7/configsettings從交換器顯示
+
++
+您可以使用Get API來顯示金鑰的值。不支援Set API。
+
+* 對於 SnapMirror 主動同步還原作業、您必須從主要位置選取備份。
+* 對於 ONTAP 9.12.1 及更低版本、從 SnapLock 資料保險箱快照建立的複本作為還原的一部分、將會繼承 SnapLock 資料保險箱到期時間。儲存管理員應在 SnapLock 到期後手動清理複本。
+
+
+[role="tabbed-block"]
+====
+.UI SnapCenter
+--
+.步驟
+. 在左導覽窗格中、按一下*資源*、然後從清單中選取適當的外掛程式。
+. 若要篩選資源清單、請選取「檔案系統」和「資源群組」選項。
+. 從清單中選取資源群組、然後按一下*還原*。
+. 在「備份」頁面中、選取要從主要或次要儲存系統還原、然後選取要還原的備份。
+. 在還原精靈中選取您的選項。
+. 您可以分別輸入要SnapCenter 在還原作業之前或之後執行的指令碼或指令碼路徑和引數。
++
+例如、您可以執行指令碼來更新SNMP設陷、自動化警示、傳送記錄等等。
+
++
+
+NOTE: 預先編寫或後製指令碼路徑不應包含磁碟機或共用區。路徑應相對於指令碼路徑。
+
+. 在「通知」頁面中、選取下列其中一個選項：
++
+|===
+| 針對此欄位... | 執行此動作... 
+
+
+ a| 
+將SnapCenter 伺服器事件記錄到儲存系統的系統記錄檔
+ a| 
+選取此選項可將SnapCenter 「伺服器」事件記錄到儲存系統的系統記錄中。
+
+
+
+ a| 
+傳送AutoSupport 失敗作業的功能通知至儲存系統
+ a| 
+選取此選項、即可使用AutoSupport 下列功能將任何失敗作業的相關資訊傳送給NetApp。
+
+
+
+ a| 
+電子郵件偏好設定
+ a| 
+選取*永遠*、*失敗*或*失敗或警告*、即可在還原備份後傳送電子郵件訊息給收件者。輸入「SMTP伺服器」、「預設電子郵件主旨」行、以及「收件者」和「寄件者」電子郵件地址。
+
+|===
+. 檢閱摘要、然後按一下「*完成*」。
+. 按一下*監控*>*工作*來監控作業進度。
+
+
+
+IMPORTANT: 如果還原的檔案系統包含資料庫、則您也必須還原資料庫。如果您不還原資料庫、則您的資料庫可能處於無效狀態。如需還原資料庫的相關資訊、請參閱該資料庫的《資料保護指南》。
+
+--
+.PowerShell Cmdlet
+--
+.步驟
+. 使用Open-SmConnection Cmdlet為SnapCenter 指定的使用者啟動與SetsServer的連線工作階段。
++
+[listing]
+----
+PS C:\> Open-Smconnection
+----
+. 使用Get-SmBackup和Get-SmBackupReport Cmdlet擷取您要還原的一或多個備份相關資訊。
++
+此範例顯示所有可用備份的相關資訊：
+
++
+[listing]
+----
+PS C:\> Get-SmBackup
+
+BackupId                      BackupName                    BackupTime                    BackupType
+--------                      ----------                    ----------                    ----------
+  1               Payroll Dataset_vise-f6_08... 8/4/2015    11:02:32 AM                 Full Backup
+  2               Payroll Dataset_vise-f6_08... 8/4/2015    11:23:17 AM
+----
++
+此範例顯示2015年1月29日至2015年2月3日備份的詳細資訊：
+
++
+[listing]
+----
+PS C:\> Get-SmBackupReport -FromDateTime "1/29/2015" -ToDateTime "2/3/2015"
+
+   SmBackupId           : 113
+   SmJobId              : 2032
+   StartDateTime        : 2/2/2015 6:57:03 AM
+   EndDateTime          : 2/2/2015 6:57:11 AM
+   Duration             : 00:00:07.3060000
+   CreatedDateTime      : 2/2/2015 6:57:23 AM
+   Status               : Completed
+   ProtectionGroupName  : Clone
+   SmProtectionGroupId  : 34
+   PolicyName           : Vault
+   SmPolicyId           : 18
+   BackupName           : Clone_SCSPR0019366001_02-02-2015_06.57.08
+   VerificationStatus   : NotVerified
+
+   SmBackupId           : 114
+   SmJobId              : 2183
+   StartDateTime        : 2/2/2015 1:02:41 PM
+   EndDateTime          : 2/2/2015 1:02:38 PM
+   Duration             : -00:00:03.2300000
+   CreatedDateTime      : 2/2/2015 1:02:53 PM
+   Status               : Completed
+   ProtectionGroupName  : Clone
+   SmProtectionGroupId  : 34
+   PolicyName           : Vault
+   SmPolicyId           : 18
+   BackupName           : Clone_SCSPR0019366001_02-02-2015_13.02.45
+   VerificationStatus   : NotVerified
+----
+. 使用Restore-SmBackup Cmdlet從備份還原資料。
++
+[listing]
+----
+Restore-SmBackup -PluginCode 'DummyPlugin' -AppObjectId 'scc54.sccore.test.com\DummyPlugin\NTP\DB1' -BackupId 269 -Confirm:$false
+output:
+Name                : Restore 'scc54.sccore.test.com\DummyPlugin\NTP\DB1'
+Id                  : 2368
+StartTime           : 10/4/2016 11:22:02 PM
+EndTime             :
+IsCancellable       : False
+IsRestartable       : False
+IsCompleted         : False
+IsVisible           : True
+IsScheduled         : False
+PercentageCompleted : 0
+Description         :
+Status              : Queued
+Owner               :
+Error               :
+Priority            : None
+Tasks               : {}
+ParentJobID         : 0
+EventId             : 0
+JobTypeId           :
+ApisJobKey          :
+ObjectId            : 0
+PluginCode          : NONE
+PluginName          :
+----
+
+
+您可以執行_Get-Help命令name_來取得可搭配Cmdlet使用之參數及其說明的相關資訊。或者、您也可以參閱 https://docs.netapp.com/us-en/snapcenter-cmdlets/index.html["《軟件指令程式參考指南》SnapCenter"^]。
+
+--
+====

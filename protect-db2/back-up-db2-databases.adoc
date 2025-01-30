@@ -1,0 +1,271 @@
+---
+permalink: protect-db2/back-up-db2-databases.html 
+sidebar: sidebar 
+keywords: SnapCenter Plug-in for IBM Db2 
+summary: 備份資料庫包括建立SnapCenter 與該伺服器的連線、新增資源、新增原則、建立備份資源群組、以及備份。 
+---
+= 備份 DB2 資料庫
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+備份資料庫包括建立SnapCenter 與該伺服器的連線、新增資源、新增原則、建立備份資源群組、以及備份。
+
+.開始之前
+* 您必須已建立備份原則。
+* 如果您想要備份與二線儲存設備有SnapMirror關係的資源、ONTAP 指派給儲存設備使用者的這個角色應該包含「全部快照鏡射」權限。不過、如果您使用「vsadmin」角色、則不需要「全部快照鏡像」權限。
+* 對於 Snapshot 複本型備份作業、請確保所有租戶資料庫均為有效且作用中。
+* 對於用於停止、 Snapshot 和取消停止作業的前置和後置命令、您應該從下列路徑檢查外掛程式主機上可用的命令清單中是否存在這些命令：
++
+** Windows 主機上的預設位置： _C:\Program NetApp SnapCenter ， SnapCenter Plug-in Creator\etc\allowed_commands.config_
+** Linux 主機上的預設位置： __/opt/oracle/scc/etc/allowed_commands.config_ NetApp SnapCenter
+
+
+
+
+
+NOTE: 如果命令清單中不存在這些命令、則作業將會失敗。
+
+[role="tabbed-block"]
+====
+.UI SnapCenter
+--
+.步驟
+. 在左側導覽窗格中、選取 * 資源 * 、然後從清單中選取適當的外掛程式。
+. 在「資源」頁面中、根據資源類型篩選*檢視*下拉式清單中的資源。
++
+選取image:../media/filter_icon.png["篩選圖示"]，然後選取主機名稱和資源類型以篩選資源。接著您可以選取 image:../media/filter_icon.png["篩選圖示"] 以關閉篩選窗格。
+
+. 選取您要備份的資源。
+. 在「資源」頁面中、選取 * 使用 Snapshot 複本的自訂名稱格式 * 、然後輸入您要用於 Snapshot 名稱的自訂名稱格式。
++
+例如、_customtext_policy_hostname_或_resource_hostname_。根據預設、 Snapshot 名稱會附加時間戳記。
+
+. 在「應用程式設定」頁面中、執行下列動作：
++
+** 選擇 * 備份 * 箭頭以設定其他備份選項：
++
+視需要啟用一致性群組備份、並執行下列工作：
+
++
+|===
+| 針對此欄位... | 執行此動作... 
+
+
+ a| 
+等待「一致性群組快照」作業完成的時間
+ a| 
+選擇 * 緊急 * 、 * 中 * 或 * 放鬆 * 以指定快照作業完成的等待時間。「緊急」= 5秒、「中」= 7秒、「輕鬆」= 20秒。
+
+
+
+ a| 
+停用WAFL Sync
+ a| 
+選擇此選項可避免強制WAFL 使用不一致點。
+
+|===
+** 選取 * 指令碼 * 箭頭以執行停止、快照和取消停止作業的前置和後置命令。
++
+您也可以在結束備份作業之前執行pres命令。指令碼和指令碼會在SnapCenter 支援服務器上執行。
+
+** 選取「 ** 自訂組態 ** 」箭頭、然後輸入使用此資源的所有工作所需的自訂值配對。
+** 選擇 * Snapshot Copy Tool* （快照複製工具 * ）箭頭以選擇要建立 Snapshot 的工具：
++
+|===
+| 如果您需要... | 然後... 
+
+
+ a| 
+SnapCenter 以建立儲存層級快照
+ a| 
+選擇* SnapCenter 不含檔案系統一致性*的功能。
+
+
+
+ a| 
+SnapCenter 使用 Windows 外掛程式將檔案系統置於一致的狀態、然後建立 Snapshot
+ a| 
+選擇* SnapCenter 《以檔案系統一致性*》。
+
+
+
+ a| 
+可輸入命令以創建 Snapshot
+ a| 
+選取 * 其他 * 、然後輸入命令以建立 Snapshot 。
+
+|===
++
+image:../media/application_settings.gif["應用程式設定"]
+
+
+
+. 在「原則」頁面中、執行下列步驟：
++
+.. 從下拉式清單中選取一或多個原則。
++
+
+NOTE: 您也可以按一下 * * 來建立原則image:../media/add_policy_from_resourcegroup.gif[""]。
+
++
+在「設定所選原則的排程」區段中、會列出所選原則。
+
+.. 針對您要設定排程的原則、在「設定排程」欄中選取 * * *image:../media/add_policy_from_resourcegroup.gif[""]。
+.. 在 [ 新增原則 _policy_name_ 的排程 ] 對話方塊中，設定排程，然後選取 *OK* 。
++
+_policy_name_是您選取的原則名稱。
+
++
+已設定的排程會列在「已套用的排程」欄中。
+
+
+
+. 在「通知」頁面的*電子郵件喜好設定*下拉式清單中、選取您要傳送電子郵件的案例。
++
+您也必須指定寄件者和接收者的電子郵件地址、以及電子郵件的主旨。也必須在*設定*>*全域設定*中設定SMTP。
+
+. 檢閱摘要、然後選取 * 完成 * 。
++
+此時會顯示「資源拓撲」頁面。
+
+. 選擇 * 立即備份 * 。
+. 在「備份」頁面中、執行下列步驟：
++
+.. 如果您已將多個原則套用至資源、請從* Policy*下拉式清單中、選取您要用於備份的原則。
++
+如果針對隨需備份所選取的原則與備份排程相關聯、則會根據為排程類型指定的保留設定來保留隨需備份。
+
+.. 選擇*備份*。
+
+
+. 按一下*監控*>*工作*來監控作業進度。
++
+** 在不完整的組態中MetroCluster 、SnapCenter 在容錯移轉之後、可能無法偵測到保護關係。
++
+如需相關資訊、請參閱： https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapCenter/Unable_to_detect_SnapMirror_or_SnapVault_relationship_after_MetroCluster_failover["無法偵測SnapVault 到SnapMirror或在MetroCluster 進行不復原容錯移轉之後的不協調關係"^]
+
+
+
+
+
+--
+.PowerShell Cmdlet
+--
+.步驟
+. 使用Open-SmConnection Cmdlet為SnapCenter 指定的使用者啟動與SetsServer的連線工作階段。
++
+[listing]
+----
+PS C:\> Open-SmConnection
+----
++
+隨即顯示使用者名稱和密碼提示。
+
+. 使用 Add-SmResources Cmdlet 新增手動資源。
++
+本範例說明如何新增 IBM DB2 執行個體：
+
++
+[listing]
+----
+PS C:\> Add-SmResource -HostName 10.32.212.13 -PluginCode DB2 -ResourceType Instance -ResourceName db2inst1 -StorageFootPrint (@{"VolumeName"="windb201_data01";"LUNName"="windb201_data01";"StorageSystem"="scsnfssvm"}) -MountPoints "D:\"
+----
++
+對於 DB2 資料庫：
+
++
+[listing]
+----
+PS C:\> Add-SmResource -HostName 10.32.212.13 -PluginCode DB2 -ResourceType Database -ResourceName SALESDB -StorageFootPrint (@{"VolumeName"="windb201_data01";"LUNName"="windb201_data01";"StorageSystem"="scsnfssvm"}) -MountPoints "D:\" -Instance DB2
+----
+. 使用Add-SmPolicy Cmdlet建立備份原則。
+. 使用SnapCenter Add-SmResourceDGroup Cmdlet保護資源或新增資源群組至Siches。
+. 使用New-SmBackup Cmdlet來初始化新的備份工作。
++
+本範例說明如何備份資源群組：
+
++
+[listing]
+----
+C:\PS> New-SMBackup -ResourceGroupName 'ResourceGroup_with_Db2_Resources' -Policy db2_policy1
+----
++
+此範例備份 DB2 執行個體：
+
++
+[listing]
+----
+C:\PS> New-SMBackup -Resources @{"Host"="10.32.212.13";"Uid"="DB2INST1";"PluginName"="DB2"} -Policy db2_policy
+----
++
+此範例備份 DB2 資料庫：
+
++
+[listing]
+----
+C:\PS> New-SMBackup -Resources @{"Host"="10.32.212.13";"Uid"="DB2INST1\WINARCDB";"PluginName"="DB2"} -Policy db2_policy
+----
+. 使用Get-smJobSummary Report Cmdlet監控工作狀態（執行中、完成或失敗）。
++
+[listing]
+----
+PS C:\> Get-SmJobSummaryReport -JobId 467
+
+SmJobId            : 467
+JobCreatedDateTime :
+JobStartDateTime   : 27-Jun-24 01:40:09
+JobEndDateTime     : 27-Jun-24 01:41:15
+JobDuration        : 00:01:06.7013330
+JobName            : Backup of Resource Group 'SCDB201WIN_RAVIR1_OPENLAB_NETAPP_LOCAL_DB2_DB2_WINCIR' with policy 'snapshot-based-db2'
+JobDescription     :
+Status             : Completed
+IsScheduled        : False
+JobError           :
+JobType            : Backup
+PolicyName         : db2_policy
+JobResultData      :
+----
+. 使用Get-SmBackup Report Cmdlet監控備份工作詳細資料、例如備份ID、備份名稱、以執行還原或複製作業。
++
+[listing]
+----
+PS C:\> Get-SmBackupReport -JobId 467
+
+BackedUpObjects           : {WINCIR}
+FailedObjects             : {}
+IsScheduled               : False
+HasMetadata               : False
+SmBackupId                : 84
+SmJobId                   : 467
+StartDateTime             : 27-Jun-24 01:40:09
+EndDateTime               : 27-Jun-24 01:41:15
+Duration                  : 00:01:06.7013330
+CreatedDateTime           : 27-Jun-24 18:39:45
+Status                    : Completed
+ProtectionGroupName       : HOSTFQDN_DB2_DB2_WINCIR
+SmProtectionGroupId       : 23
+PolicyName                : db2_policy
+SmPolicyId                : 13
+BackupName                : HOSTFQDN _DB2_DB2_WINCIR_HOST_06-27-2024_01.40.09.7397
+VerificationStatus        : NotApplicable
+VerificationStatuses      :
+SmJobError                :
+BackupType                : SCC_BACKUP
+CatalogingStatus          : NotApplicable
+CatalogingStatuses        :
+ReportDataCreatedDateTime :
+PluginCode                : SCC
+PluginName                : DB2
+PluginDisplayName         : IBM DB2
+JobTypeId                 :
+JobHost                   : HOSTFQDN
+----
+
+
+您可以執行_Get-Help命令name_來取得可搭配Cmdlet使用之參數及其說明的相關資訊。或者、您也可以參閱 https://docs.netapp.com/us-en/snapcenter-cmdlets/index.html["《軟件指令程式參考指南》SnapCenter"^]。
+
+--
+====

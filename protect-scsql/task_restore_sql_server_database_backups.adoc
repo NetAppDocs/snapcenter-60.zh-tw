@@ -1,0 +1,292 @@
+---
+permalink: protect-scsql/task_restore_sql_server_database_backups.html 
+sidebar: sidebar 
+keywords: restore operation 
+summary: 您可以使用SnapCenter 支援功能來還原備份的SQL Server資料庫。資料庫還原是一個多階段程序、可將指定SQL Server備份中的所有資料和記錄頁面複製到指定的資料庫。 
+---
+= 還原SQL Server資料庫備份
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用SnapCenter 支援功能來還原備份的SQL Server資料庫。資料庫還原是一個多階段程序、可將指定SQL Server備份中的所有資料和記錄頁面複製到指定的資料庫。
+
+.關於這項工作
+* 您可以將備份的SQL Server資料庫還原至建立備份的同一主機上的不同SQL Server執行個體。
++
+您可以使用SnapCenter 支援功能將備份的SQL Server資料庫還原至替代路徑、以免取代正式作業版本。
+
+* 無需將SQL Server叢集群組離線、即可還原Windows叢集中的資料庫。SnapCenter
+* 如果在還原作業期間發生叢集故障（叢集群組移動作業）（例如、如果擁有資源的節點當機）、您必須重新連線至SQL Server執行個體、然後重新啟動還原作業。
+* 當使用者或SQL Server代理程式工作正在存取資料庫時、您無法還原資料庫。
+* 您無法將系統資料庫還原至替代路徑。
+* 可使用外掛主機SMCoreServiceHost.exe.Config檔案中的PredefinedWindows指令碼目錄金鑰來定義指令碼路徑。
++
+如有需要、您可以變更此路徑並重新啟動SMcore服務。建議您使用預設的安全路徑。
+
++
+金鑰的值可透過API：API /4.7/configsettings從交換器顯示
+
++
+您可以使用Get API來顯示金鑰的值。不支援Set API。
+
+* 「還原」精靈頁面上的大部分欄位都是不言自明的。下列資訊說明您可能需要指引的欄位。
+* 對於 SnapMirror 主動同步還原作業、您必須從主要位置選取備份。
+* 對於啟用 SnapLock 的原則、對於 ONTAP 9.12.1 及更低版本、如果您指定 Snapshot 鎖定期間、從防竄改快照建立的複本作為還原的一部分、將會繼承 SnapLock 到期時間。儲存管理員應在 SnapLock 到期後手動清理複本。
+
+
+[role="tabbed-block"]
+====
+.UI SnapCenter
+--
+.步驟
+. 在左導覽窗格中、按一下*資源*、然後從清單中選取適當的外掛程式。
+. 在「資源」頁面中、從*檢視*清單中選取*資料庫*或*資源群組*。
+. 從清單中選取資料庫或資源群組。
++
+此時會顯示「拓撲」頁面。
+
+. 從「管理複本」檢視中、從儲存系統選取*備份*。
+. 從表格中選取備份、然後按一下 image:../media/restore_icon.gif["還原圖示"] 圖示。
++
+image::../media/restoring_resource.gif[還原資源]
+
+. 在「還原範圍」頁面中、選取下列其中一個選項：
++
+|===
+| 選項 | 說明 
+
+
+ a| 
+將資料庫還原至建立備份的同一部主機
+ a| 
+如果您想要將資料庫還原至備份所在的同一個SQL伺服器、請選取此選項。
+
+
+
+ a| 
+將資料庫還原至替代主機
+ a| 
+如果您想要將資料庫還原至同一或不同主機中的不同SQL Server、並進行備份、請選取此選項。
+
+選取主機名稱、提供資料庫名稱（選用）、選取執行個體、然後指定還原路徑。
+
+
+NOTE: 替代路徑中提供的副檔名必須與原始資料庫檔案的副檔名相同。
+
+如果「還原範圍」頁面中未顯示*將資料庫還原為替代主機*選項、請清除瀏覽器快取。
+
+
+
+ a| 
+使用現有的資料庫檔案還原資料庫
+ a| 
+如果您想要將資料庫還原至備份所在相同或不同主機中的替代SQL Server、請選取此選項。
+
+資料庫檔案應已存在於指定的現有檔案路徑中。選取主機名稱、提供資料庫名稱（選用）、選取執行個體、然後指定還原路徑。
+
+|===
+. 在「恢復範圍」頁面中、選取下列其中一個選項：
++
+|===
+| 選項 | 說明 
+
+
+ a| 
+無
+ a| 
+當您只需要還原完整備份而不需要任何記錄時、請選取*無*。
+
+
+
+ a| 
+所有記錄備份
+ a| 
+選取*所有記錄備份*最新的備份還原作業、即可在完整備份之後還原所有可用的記錄備份。
+
+
+
+ a| 
+記錄備份直到
+ a| 
+選取*依記錄備份*以執行時間點還原作業、此作業會根據備份記錄來還原資料庫、直到備份記錄顯示所選日期為止。
+
+
+
+ a| 
+依特定日期截止
+ a| 
+選取*依特定日期直到*以指定交易記錄不套用至還原資料庫的日期和時間。
+
+此時間點還原作業會暫停還原在指定日期和時間之後記錄的交易記錄項目。
+
+
+
+ a| 
+使用自訂記錄目錄
+ a| 
+如果您選取*所有記錄備份*、*依記錄備份*或*依特定日期直到*、而且記錄位於自訂位置、請選取*使用自訂記錄目錄*、然後指定記錄位置。
+
+只有在您選擇了 * 將資料庫還原至其他主機 * 或 * 使用現有資料庫檔案還原資料庫 * 時、才能使用 * 使用自訂記錄目錄 * 選項。您也可以使用共用路徑、但請確定 SQL 使用者可以存取該路徑。
+
+
+NOTE: 可用度群組資料庫不支援自訂記錄目錄。
+
+|===
+. 在「營運前」頁面中、執行下列步驟：
++
+.. 在「預先還原選項」頁面中、選取下列其中一個選項：
++
+*** 選取*還原期間以相同名稱覆寫資料庫*、以相同名稱還原資料庫。
+*** 選取*保留SQL資料庫複寫設定*以還原資料庫並保留現有的複寫設定。
+*** 選擇*在還原前建立交易記錄備份*、以在還原作業開始之前建立交易記錄。
+*** 如果交易記錄備份失敗、請選擇*結束還原*、以在交易記錄備份失敗時中止還原作業。
+
+
+.. 指定執行還原工作之前要執行的選用指令碼。
++
+例如、您可以執行指令碼來更新SNMP設陷、自動化警示、傳送記錄等等。
+
++
+
+NOTE: 預先編寫或後製指令碼路徑不應包含磁碟機或共用區。路徑應相對於指令碼路徑。
+
+
+
+. 在「Post Ops（作業後）」頁面中、執行下列步驟：
++
+.. 在「還原完成後選擇資料庫狀態」區段中、選取下列其中一個選項：
++
+*** 如果您要立即還原所有必要的備份、請選取*「運作中、但無法還原其他交易記錄*」。
++
+這是預設行為、可藉由復原未提交的交易、讓資料庫隨時可供使用。您必須先建立備份、才能還原其他交易記錄。
+
+*** 選擇*非作業性、但可用於還原額外的交易記錄*、以使資料庫不再運作、而不會回復未提交的交易。
++
+可還原其他交易記錄。您必須等到資料庫恢復後才能使用。
+
+*** 選擇*唯讀模式、可用於還原額外的交易記錄*、讓資料庫保持唯讀模式。
++
+此選項會取消未提交的交易、但會將已復原的動作儲存在待命檔案中、以便還原還原還原效果。
+
++
+如果啟用「復原目錄」選項、則會還原更多交易記錄。如果交易記錄的還原作業不成功、則變更可以回溯。SQL Server文件包含更多資訊。
+
+
+
+.. 指定執行還原工作後要執行的選用指令碼。
++
+例如、您可以執行指令碼來更新SNMP設陷、自動化警示、傳送記錄等等。
+
++
+
+NOTE: 預先編寫或後製指令碼路徑不應包含磁碟機或共用區。路徑應相對於指令碼路徑。
+
+
+
+. 在「通知」頁面的*電子郵件喜好設定*下拉式清單中、選取您要傳送電子郵件的案例。
++
+您也必須指定寄件者和接收者的電子郵件地址、以及電子郵件的主旨。
+
+. 檢閱摘要、然後按一下「*完成*」。
+. 使用「*監控*>*工作*」頁面監控還原程序。
+
+
+--
+.PowerShell Cmdlet
+--
+.步驟
+. 使用Open-SmConnection Cmdlet為SnapCenter 指定的使用者啟動與SetsServer的連線工作階段。
++
+[listing]
+----
+PS C:\> Open-Smconnection
+----
+. 使用Get-SmBackup和Get-SmBackupReport Cmdlet擷取您要還原的一或多個備份相關資訊。
++
+此範例顯示所有可用備份的相關資訊：
+
++
+[listing]
+----
+PS C:\> Get-SmBackup
+
+BackupId                      BackupName                    BackupTime                    BackupType
+--------                      ----------                    ----------                    ----------
+  1               Payroll Dataset_vise-f6_08... 8/4/2015    11:02:32 AM                 Full Backup
+  2               Payroll Dataset_vise-f6_08... 8/4/2015    11:23:17 AM
+----
++
+此範例顯示2015年1月29日至2015年2月3日備份的詳細資訊：
+
++
+[listing]
+----
+PS C:\> Get-SmBackupReport -FromDateTime "1/29/2015" -ToDateTime "2/3/2015"
+
+   SmBackupId           : 113
+   SmJobId              : 2032
+   StartDateTime        : 2/2/2015 6:57:03 AM
+   EndDateTime          : 2/2/2015 6:57:11 AM
+   Duration             : 00:00:07.3060000
+   CreatedDateTime      : 2/2/2015 6:57:23 AM
+   Status               : Completed
+   ProtectionGroupName  : Clone
+   SmProtectionGroupId  : 34
+   PolicyName           : Vault
+   SmPolicyId           : 18
+   BackupName           : Clone_SCSPR0019366001_02-02-2015_06.57.08
+   VerificationStatus   : NotVerified
+
+   SmBackupId           : 114
+   SmJobId              : 2183
+   StartDateTime        : 2/2/2015 1:02:41 PM
+   EndDateTime          : 2/2/2015 1:02:38 PM
+   Duration             : -00:00:03.2300000
+   CreatedDateTime      : 2/2/2015 1:02:53 PM
+   Status               : Completed
+   ProtectionGroupName  : Clone
+   SmProtectionGroupId  : 34
+   PolicyName           : Vault
+   SmPolicyId           : 18
+   BackupName           : Clone_SCSPR0019366001_02-02-2015_13.02.45
+   VerificationStatus   : NotVerified
+----
+. 使用Restore-SmBackup Cmdlet從備份還原資料。
++
+[listing]
+----
+Restore-SmBackup -PluginCode 'DummyPlugin' -AppObjectId 'scc54.sccore.test.com\DummyPlugin\NTP\DB1' -BackupId 269 -Confirm:$false
+output:
+Name                : Restore 'scc54.sccore.test.com\DummyPlugin\NTP\DB1'
+Id                  : 2368
+StartTime           : 10/4/2016 11:22:02 PM
+EndTime             :
+IsCancellable       : False
+IsRestartable       : False
+IsCompleted         : False
+IsVisible           : True
+IsScheduled         : False
+PercentageCompleted : 0
+Description         :
+Status              : Queued
+Owner               :
+Error               :
+Priority            : None
+Tasks               : {}
+ParentJobID         : 0
+EventId             : 0
+JobTypeId           :
+ApisJobKey          :
+ObjectId            : 0
+PluginCode          : NONE
+PluginName          :
+----
+
+
+您可以執行_Get-Help命令name_來取得可搭配Cmdlet使用之參數及其說明的相關資訊。或者、您也可以參閱 https://docs.netapp.com/us-en/snapcenter-cmdlets/index.html["《軟件指令程式參考指南》SnapCenter"^]。
+
+--
+====
