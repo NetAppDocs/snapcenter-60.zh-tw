@@ -4914,7 +4914,6 @@
   <block id="0b12a00876503fb1813afee6ad9b0a76" category="list-text">ora_temp 指定暫存檔的目錄。</block>
   <block id="e1ab4aa639aa539548c7d55759dc7004" category="list-text">oracle_home 指定安裝 Oracle 軟體的目錄。</block>
   <block id="57808f9033b6670d0e1ff1ecc8197488" category="list-text">archive 記錄檔僅指定是否要備份歸檔記錄檔。</block>
-  <block id="6d6058c414d1170875e11ce8a19484f0" category="list-text">oracle_backup_mode 指定是執行線上或離線備份。</block>
   <block id="c4e433903376436b2e77e2cfdc6f5913" category="summary">如果個別 NetApp 支援的外掛程式資源不是任何資源群組的一部分、您可以從「資源」頁面備份資源。您可以隨需備份資源、或者、如果資源已附加原則並已設定排程、則會根據排程自動進行備份。</block>
   <block id="6ce5278b296a0a5a39af4a4d0cbd927c" category="doc">備份個別 NetApp 支援的外掛程式資源</block>
   <block id="4d1df2561c7f84f9fdcbf35605a3f16a" category="paragraph">按一下 <block ref="6baddd7f5b485bce282661b4e4579f17" category="inline-image-macro-rx" type="image"></block>，然後選取主機名稱和資源類型以篩選資源。接著您可以按一下 <block ref="6baddd7f5b485bce282661b4e4579f17" category="inline-image-macro-rx" type="image"></block> 以關閉篩選窗格。</block>
@@ -7992,7 +7991,6 @@
   <block id="953acf14bebe77c11e648186f3957214" category="list-text">您的使用者必須具有SQL Server上的Sysadmin權限。</block>
   <block id="d165009fc919b7c43f63036983c47ae0" category="paragraph">適用於Microsoft SQL Server的VMware vCenter外掛程式使用Microsoft VDI架構、需要系統管理員存取權。SnapCenter</block>
   <block id="9221af74572734362746f0af9104d884" category="inline-link">Microsoft支援文件編號2926557：SQL Server VDI備份與還原作業需要Sysadmin權限</block>
-  <block id="c081ea6f4c7f13224651487050d87831" category="paragraph"><block ref="c081ea6f4c7f13224651487050d87831" category="inline-link-rx"></block></block>
   <block id="9c9a08a242e9f6311be9fa5bd945d582" category="list-text">如果安裝了適用於Microsoft SQL Server的功能、您必須停止或停用服務和排程。SnapManager</block>
   <block id="1931c747684bb6010ac638ae2be606b3" category="paragraph">如果您打算將備份或複製工作匯入SnapCenter 到支援區、請勿解除安裝SnapManager Microsoft SQL Server的功能。</block>
   <block id="024ecfe0da835b1f362b5e64ec1408ab" category="list-text">主機必須可解析為伺服器的完整網域名稱（FQDN）。</block>
@@ -9006,11 +9004,9 @@
   <block id="430bb58f6ef28c742787a646394cc85d" category="summary">SnapCenter 軟體 6.0 版包含數項新功能與增強功能。</block>
   <block id="c93a09afa54abf05ddd4770e3b2343a1" category="doc">SnapCenter 軟體 6.0 的新功能</block>
   <block id="6f8d85621ec7e8c73c4ba859ec9c7469" category="inline-link-macro">支援 NetApp 的企業工作負載外掛程式</block>
-  <block id="478831acf82b0a4b3818fd65c592a742" category="cell"><block ref="478831acf82b0a4b3818fd65c592a742" category="inline-link-macro-rx"></block></block>
   <block id="3be8c0bcb79f27206e60c05521a2483c" category="paragraph">SnapCenter 提供外掛程式來管理 PostgreSQL ， MySQL 和 IBM DB2 等工作負載。您可以自動探索，備份，還原，裝載及複製工作負載。</block>
   <block id="1fa76ac55ad0967716ac4dfee12b4407" category="paragraph">SnapCenter 也提供外掛程式來管理工作負載，例如 SAP ASE ， SAP MaxDB ， MongoDB ， Oracle 應用程式和 ONTAP 儲存設備。您可以備份，還原及複製工作負載。</block>
   <block id="1ef9e52684a20f666e12e341c8ef8ce1" category="inline-link-macro">支援 Linux 版本的 SnapCenter ，同時適用於雲端和內部部署工作負載</block>
-  <block id="8759eb4a15f0954f1ffe6a1ba0fcb91b" category="cell"><block ref="8759eb4a15f0954f1ffe6a1ba0fcb91b" category="inline-link-macro-rx"></block></block>
   <block id="1cbe08eda60fa869e0f775f6bb3d2581" category="paragraph">現在， Red Hat Enterprise Linux （ RHEL ）， Oracle Linux 和 SUSE Linux Enterprise Server （ SLES ）等 Linux 版本均可使用獨立的 SnapCenter 二進位檔。</block>
   <block id="7daff1874dce5a11aba2586028b0c18f" category="list-text">支援 Azure NetApp Files ， Amazon FSX for NetApp ONTAP ， Cloud Volumes ONTAP 和 ONTAP 儲存設備。</block>
   <block id="762100fcdd1477c85af12beef8cd62c3" category="list-text">Linux 版本的獨立二進位檔，例如 Red Hat Enterprise Linux （ RHEL ）， Oracle Linux 和 SUSE Linux Enterprise Server （ SLES ）。</block>
@@ -9018,23 +9014,18 @@
   <block id="1dbcbbe14ef1a2328b3e7e8b86a02d30" category="list-text">支援 PostgreSQL ， MySQL 和 MongoDB 等現代化工作負載。</block>
   <block id="42e9bb4040dfb564c8bc793490bd7ba6" category="list-text">支援 ONTAP Volume 和 Linux 檔案系統的外掛程式，以保護任何不受支援或自行開發的應用程式。</block>
   <block id="4f53b479c6b47d73b1fdb28f399b1301" category="inline-link-macro">支援 SnapMirror 主動式同步</block>
-  <block id="a757709afe5913a9ac546212ec3e1688" category="cell"><block ref="a757709afe5913a9ac546212ec3e1688" category="inline-link-macro-rx"></block></block>
   <block id="426704b1f334cde736f8e5ff800c0a22" category="paragraph">您現在可以使用 SnapCenter 來設定 SnapMirror 主動式同步功能，並有效備份，還原及複製資料庫和 VMware VM 的 SAN 工作負載。如此可確保透明化的應用程式容錯移轉和營運持續性。</block>
   <block id="e030f85ea3742a8498cd3f4ce5f26a2f" category="inline-link-macro">支援 SMB3 上的 Microsoft SQL Server</block>
-  <block id="c550e496e988fba14212cef600247fed" category="cell"><block ref="c550e496e988fba14212cef600247fed" category="inline-link-macro-rx"></block></block>
   <block id="729dead3f3fe6b0217c2f68871edb8ee" category="paragraph">您現在可以使用 SnapCenter 來保護部署在 ONTAP ， Azure NetApp Files ， Amazon FSX for NetApp ONTAP 和 Cloud Volumes ONTAP 中 SMB3 傳輸協定上的 Microsoft SQL Server 資料庫。</block>
   <block id="534b29f3d774d1d19d1dc1030cdc4b3d" category="inline-link-macro">支援 NVMe / TCP</block>
-  <block id="98d7af4aa50fe1e0cd7013f44cc2cebc" category="cell"><block ref="98d7af4aa50fe1e0cd7013f44cc2cebc" category="inline-link-macro-rx"></block></block>
   <block id="cadb0ed69287e5a4f65d1590e5e42a58" category="paragraph">SnapCenter 現在支援 NVMe over TCP 傳輸協定，可備份及恢復應用程式和檔案系統。</block>
   <block id="bcaa0376902365340dff7a0ee422b390" category="cell">支援 VMware vSphere 虛擬磁碟區（ VVols ）</block>
   <block id="d0942f199de3f390337f613419cc5b6d" category="paragraph">您現在可以使用 SnapCenter 來保護部署在 vVols 上的資料庫和檔案系統。</block>
   <block id="180a2e8c671bfb57b670570970b59480" category="summary">6.0.1 版的 SnapCenter 軟體包含數項新功能和增強功能。</block>
   <block id="f5db6e0b0a7608b32dd00dbb85353e53" category="doc">SnapCenter 軟體 6.0.1 的新增功能</block>
   <block id="0ee351a583abf7baa869129519adaddb" category="inline-link-macro">支援 Azure NetApp Files 備份</block>
-  <block id="4396a053fce24f7f396ccf91773d1924" category="cell"><block ref="4396a053fce24f7f396ccf91773d1924" category="inline-link-macro-rx"></block></block>
   <block id="6d3c36ceae85dfee8b7d9ccb6f9daa41" category="paragraph">您現在可以使用 SnapCenter 將位於 Azure NetApp Files 上的應用程式備份及複製到 Azure Blob 儲存設備（物件存放區）。</block>
   <block id="f47390dbd7bff67c8e4d16001f8c4395" category="inline-link-macro">支援在 Linux 上執行的 SnapCenter 高可用度</block>
-  <block id="c382d5571738a226abf22d83f911bf29" category="cell"><block ref="c382d5571738a226abf22d83f911bf29" category="inline-link-macro-rx"></block></block>
   <block id="dc3cf03517bc0034c89608c70487dd43" category="paragraph">SnapCenter 的 HA 組態支援現已延伸至 Linux 系統。您可以使用標準負載平衡器來進行此組態：</block>
   <block id="cf70dd989291fe3c73323dca9c132c7a" category="list-text">F5 負載平衡器</block>
   <block id="3a5261cb56e1fc4dcab4467255cb2f77" category="list-text">Microsoft 網路負載平衡（ NLB ）</block>
@@ -9042,10 +9033,8 @@
   <block id="00c0ea0ebc04a689882db84f8ac573b8" category="list-text">彈性負載平衡（ Elb ）</block>
   <block id="30b49d6d7f72510603794f5cddeb0f51" category="list-text">Azure 負載平衡器</block>
   <block id="2f95a365481f255b94a459c0cdbe6403" category="inline-link-macro">能夠管理排程的備份工作</block>
-  <block id="ed432f9ce52c9850999f7b028aad79ff" category="cell"><block ref="ed432f9ce52c9850999f7b028aad79ff" category="inline-link-macro-rx"></block></block>
   <block id="45504f3ad62432af1eda619e4b060b8a" category="paragraph">您現在可以設定排程工作的臨界值，以根據系統硬體組態，控制您想要在任何指定時間執行的備份數量。</block>
   <block id="4001d0b97ee7312467d6a3f7954548e2" category="inline-link-macro">管理過時工作的能力</block>
-  <block id="df630e1703b2829b32d71f57dd02d24e" category="cell"><block ref="df630e1703b2829b32d71f57dd02d24e" category="inline-link-macro-rx"></block></block>
   <block id="d76b0a3fe3eb0d4b24bd1965df4f6005" category="paragraph">您現在可以設定預先定義的排程，以清除卡住 72 小時以上的過時工作。</block>
   <block id="8a30edb275ecde423390e79fd8e6f1b2" category="cell">適用於在 AIX 上執行的 IBM DB2 ， Oracle Application 和 Storage 外掛程式的資料保護功能</block>
   <block id="7d8509e50a4a8e004140e403e5253c3c" category="paragraph">支援在 AIX 上執行的 IBM DB2 ， Oracle Application 和 Storage 外掛程式的資料保護。</block>
@@ -9970,4 +9959,16 @@
   <block id="2128757ca4207f5d5000cd4894d8c58f" category="list-text">物件儲存備份不支援 Oracle PDB 複本，但快照支援 Oracle PDB 複本。</block>
   <block id="c23d56866a5b11fd0d8dc189fcf21298" category="list-text"><block ref="341e3fddad4b27511133b6917a75bb8a" category="inline-link-rx"></block></block>
   <block id="57cf9c4ee485623172a5c60cbee423a4" category="paragraph">觀看 <block ref="96716f545c5cf1a209bf10c1a798ce38" category="inline-link-macro-rx"></block> 影片。</block>
+  <block id="17103b09b3247a2b39032b11b995b325" category="list-text">ORACLE_BACKUPMODE 指定是否執行線上或離線備份。</block>
+  <block id="e787bc810fe0c9919da5538cad8cb1f1" category="list-text">ORACLE_EXPORT_PARAMETERS 指定在執行 /bin/su &lt;user running sqlplus&gt; -c sqlplus /nolog &lt;cmd&gt; 時是否應重新匯出上述定義的環境變數。通常情況下，當執行 sqlplus 的使用者尚未設定使用 connect / as sysdba 連接資料庫所需的所有環境變數時，就會發生這種情況。</block>
+  <block id="cb5d59c817a7392efa454c9c69508067" category="paragraph"><block ref="cb5d59c817a7392efa454c9c69508067" category="inline-link-rx"></block></block>
+  <block id="6031eb6179af6443a243be6f3afc89c2" category="cell"><block ref="6031eb6179af6443a243be6f3afc89c2" category="inline-link-macro-rx"></block></block>
+  <block id="e3d54a63247a6c8d00eaf0d0ac350f66" category="cell"><block ref="e3d54a63247a6c8d00eaf0d0ac350f66" category="inline-link-macro-rx"></block></block>
+  <block id="b73dff6504fdf896cc81438ec499aab3" category="cell"><block ref="b73dff6504fdf896cc81438ec499aab3" category="inline-link-macro-rx"></block></block>
+  <block id="3ce8e1b4bdbfdbe1843642987ac78d9a" category="cell"><block ref="3ce8e1b4bdbfdbe1843642987ac78d9a" category="inline-link-macro-rx"></block></block>
+  <block id="a0866064b422737fcd7207ed89918334" category="cell"><block ref="a0866064b422737fcd7207ed89918334" category="inline-link-macro-rx"></block></block>
+  <block id="9551046b2a6d7559b8a83b5aef929c46" category="cell"><block ref="9551046b2a6d7559b8a83b5aef929c46" category="inline-link-macro-rx"></block></block>
+  <block id="6a09e8e469719d9f6e6929ebf67fe7fb" category="cell"><block ref="6a09e8e469719d9f6e6929ebf67fe7fb" category="inline-link-macro-rx"></block></block>
+  <block id="79ea5e6fb1fadf858a6095790bac1d7a" category="cell"><block ref="79ea5e6fb1fadf858a6095790bac1d7a" category="inline-link-macro-rx"></block></block>
+  <block id="146c2281358e7c759a0fe95a6f5c19ed" category="cell"><block ref="146c2281358e7c759a0fe95a6f5c19ed" category="inline-link-macro-rx"></block></block>
 </blocks>
