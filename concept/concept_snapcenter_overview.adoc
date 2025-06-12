@@ -50,13 +50,7 @@ summary: 支援簡單、集中化、可擴充的平台、可為在混合雲任�
 
 * 集中化、應用程式一致的資料保護
 +
-Microsoft Exchange Server ， Microsoft SQL Server ， Linux 或 AIX 上的 Oracle 資料庫， SAP HANA 資料庫， IBM DB2 ， PostgreSQL ， MySQL 和 ONTAP 系統上執行的 Windows 主機檔案系統均支援資料保護。
-
-+
-其他標準或自訂應用程式和資料庫也支援資料保護、提供架構以建立使用者定義SnapCenter 的功能表外掛程式。如此一來、其他應用程式和資料庫就能從同一個單一窗口進行資料保護。藉由運用此架構， NetApp 已發行適用於 MongoDB ， Storage ， MaxDB ， Sybase ASE ， ORASCPM 的 SnapCenter 外掛程式。除此之外、您也可以使用開發人員指南建立自己的外掛程式。
-
-+
-link:../protect-scc/develop_a_plug_in_for_your_application.html["為應用程式開發外掛程式"]
+Microsoft Exchange Server ， Microsoft SQL Server ， Linux 或 AIX 上的 Oracle 資料庫， SAP HANA 資料庫， IBM DB2 ， PostgreSQL ， MySQL 和 ONTAP 系統上執行的 Windows 主機檔案系統均支援資料保護。SnapCenter 也支援 MongoDB、Storage、MaxDB、Sybase ASE 和 ORASCPM 等應用程式的保護。
 
 * 原則型備份
 +
@@ -220,7 +214,7 @@ SnapCenter 伺服器同時支援 Microsoft Windows 和 Linux （ RHEL 8.x 、 RH
 如果您使用的是 SnapCenter Plug-in 套件 for Linux 或 SnapCenter Plug-in 套件 for AIX 、則排程會使用 Quartz 排程器集中執行。
 
 * 針對Oracle資料庫的支援功能、在支援Oracle資料庫的支援中心主機上執行的主機代理程式會與在Linux或AIX主機上執行的支援程式（SPL）通訊、以執行不同的資料保護作業。SnapCenter SnapCenter SnapCenter
-* 針對SAP HANA資料庫和更新版的SAP HANA外掛程式、透過主機上執行的SCCore代理程式、讓支援這些外掛程式的支援能力更高。SnapCenter SnapCenter SnapCenter
+* 對於適用於 SAP HANA 資料庫的 SnapCenter 插件，SnapCenter 伺服器透過在主機上執行的 SCCore 代理程式與插件進行通訊。
 
 
 支援使用HTTPS的支援伺服器和外掛程式與主機代理程式通訊。SnapCenter關於功能的資訊SnapCenter 會儲存在SnapCenter 資訊庫中。
@@ -306,19 +300,6 @@ SAP HANA資料庫的外掛程式
 適用於UNIX的外掛程式或適用於Windows的外掛程式
  a| 
 HDBSQL用戶端主機
- a| 
-Linux或Windows
-
-
-
- a| 
-自訂外掛程式
- a| 
-適用於Linux的外掛程式套件與適用於Windows的外掛程式套件
- a| 
-對於檔案系統備份、Windows外掛程式
- a| 
-自訂應用程式主機
  a| 
 Linux或Windows
 
@@ -500,7 +481,7 @@ NetApp 支援的外掛程式包括 MongoDB ， ORASCPM （ Oracle 應用程式�
 
 * 支援其他外掛程式來管理其他 SnapCenter 外掛程式不支援的應用程式或資料庫。NetApp 支援的外掛程式並未隨附於 SnapCenter 安裝中。
 * 支援在另一個磁碟區上建立備份集的鏡射複本、並執行磁碟對磁碟備份複寫。
-* 同時支援Windows和Linux環境。在Windows環境中、透過自訂外掛程式的自訂應用程式可選擇性地使用SnapCenter 適用於Microsoft Windows的還原外掛程式來進行檔案系統一致的備份。
+* 同時支援Windows和Linux環境。
 
 
 

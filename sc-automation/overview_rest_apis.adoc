@@ -19,6 +19,5 @@ REST API可用於執行多SnapCenter 項功能完善的管理作業。REST API�
 
 * Microsoft SQL Server的外掛程式
 * SAP HANA資料庫的外掛程式
-* 自訂外掛程式
 * Oracle資料庫的外掛程式
 

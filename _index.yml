@@ -84,7 +84,5 @@ indexpage:
       url: https://docs.netapp.com/us-en/snapcenter-cmdlets/index.html
     - title: 命令參考指南
       url: https://library.netapp.com/ecm/ecm_download_file/ECMLP3323470
-    - title: 先前版本SnapCenter 的不適用資料
-      url: https://www.netapp.com/data-protection/backup-recovery/snapcenter-backup-management/documentation/#ProseArticleLinkList13
     - title: NetApp知識庫SnapCenter
       url: https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapCenter
