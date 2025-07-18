@@ -9543,4 +9543,5 @@
   <block id="ae73a51250a46e35a8b765915ef7763a" category="paragraph">*顯示主儲存設備上的備份與複本的範例*</block>
   <block id="6fea498808c5d97bb251d0bdbc3943eb" category="sidebar">為 Linux 主機上的 SnapCenter 插件服務設定 CA 憑證</block>
   <block id="5c1418af1ce8eeaeb3745b659e1fcfe8" category="sidebar">為 Windows 主機上的 SnapCenter 插件服務設定 CA 憑證</block>
+  <block id="c0f10ba70433b3a51c779845827cf459" category="paragraph">如果您使用的是 Windows 叢集設置，您還應該安裝和設定 Windows 遠端管理 (WinRM)。</block>
 </blocks>
