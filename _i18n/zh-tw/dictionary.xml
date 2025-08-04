@@ -9247,34 +9247,22 @@
   <block id="c589a9c8b3b9ae7adc1d5609288b15f4" category="summary">您可以使用SnapCenter 「伺服器安裝程式執行檔」來升級SnapCenter 「伺服器」。</block>
   <block id="1036bf628e6855555becd37c50bc5618" category="doc">升級 Windows 主機上的 SnapCenter 伺服器</block>
   <block id="5ddb71adbd6daab9bc17e4749bc281f8" category="list-text">支援Windows更新的SnapCenter 更新必須是最新版的伺服器主機、而且不會有擱置中的系統重新啟動。</block>
-  <block id="b8c9089814c2cbd7d1cee812b814e743" category="list-text">在開始升級作業之前、您應確保沒有其他作業正在執行。</block>
-  <block id="a679759c30b6a98b50a9a2e53167f15b" category="list-text">您應該在SnapCenter 確保沒有工作正在執行之後、備份這個資訊儲存庫（MySQL）資料庫。建議在升級SnapCenter 完Exchange Server和Exchange外掛程式之前先執行此動作。</block>
   <block id="7a705c8931c016f06134daebf36e80fe" category="paragraph">如需相關資訊，請參閱 <block ref="e8b16a01919e198d9e965cee62b54323" category="inline-link-macro-rx"></block>。</block>
-  <block id="93e063301f68e16961686672bfe6208e" category="list-text">您應該備份SnapCenter 所有已在SnapCenter 還原伺服器主機或外掛主機上修改的支援功能組態檔案。</block>
   <block id="77b44cc84c18e6f68f7831889cfc9abd" category="paragraph">例如：SnapDriveService.exe.config、SMCoreServiceHost.exe.config等。SnapCenter</block>
-  <block id="a6230500cc307e0a76e575726dcf9cdd" category="list-text">在升級期間、會執行SQL指令碼來更新NSM資料庫中的Exchange資料、將DAG和主機簡稱轉換為FQDN。這僅適用於SnapCenter 搭配使用含有Exchange外掛程式的NetApp伺服器。</block>
-  <block id="4d6b1749d463347a1b3df01a9e8b0ea5" category="list-text">在開始升級作業之前，如果您已手動將伺服器主機置於維護模式，則必須在升級後按一下 * 主機 * &gt; * 啟動排程 * ，手動將伺服器主機移出維護模式。</block>
   <block id="ed00a9e405426a3469fc285a29a849ab" category="list-text">針對Microsoft SQL Server的支援功能、適用於Microsoft Exchange Server的支援功能、以及適用於Microsoft Windows的支援功能、建議您將伺服器和外掛程式主機升級至4.7版、以便運行指令碼路徑。SnapCenter SnapCenter SnapCenter</block>
   <block id="d707739d912438c4a86ec02ff6529da1" category="paragraph">針對原則中已啟用的預先編寫和後製指令碼的現有備份與驗證排程、備份作業會在升級後繼續運作。</block>
   <block id="8159134911a3775f77dfaeafb846c0d3" category="paragraph">在「*工作詳細資料*」頁面中、有一則警告訊息建議客戶將指令碼複製到指令碼路徑、然後編輯原則、以提供相對於指令碼路徑的路徑。對於複製生命週期工作、會在子工作層級顯示警告訊息。</block>
   <block id="d6d9056bd3ccaf6f2ea25c46f86b217c" category="list-text">從 NetApp 支援網站下載 SnapCenter 伺服器安裝套件。</block>
   <block id="8e3a959801db0274c8bf2982a663244b" category="paragraph"><block ref="8e3a959801db0274c8bf2982a663244b" category="inline-link-rx"></block></block>
   <block id="b74248c6cef601e9db35af2dd0a5b036" category="list-text">建立網路組態的複本、網址為：C:\Program Files\NetApp\SnapCenter網路應用程式。</block>
-  <block id="5c2a71118d4b6f36cf346a5f00cf560b" category="list-text">從SnapCenter Windows工作排程中匯出與外掛程式主機相關的支援排程、以便在升級失敗時使用此排程來還原排程。</block>
   <block id="7e6c836a82252a29bd95ec48739979b0" category="paragraph"><block ref="0dbb2a40e374e0b582e407508a6ff9db" prefix="" category="inline-code"></block></block>
   <block id="873d8e42b0c7d55896b02efe6ca3e73c" category="list-text">如果SnapCenter 未設定儲存庫備份、請建立「支援MySQL資料庫傾印」。</block>
   <block id="fd143985bfb19ac69751205ce500692d" category="paragraph"><block ref="9f9cb6a17d29e09998174559551ec1ee" prefix="" category="inline-code"></block></block>
   <block id="b5dc8ae18451c8407650044643e43811" category="paragraph">出現提示時、請輸入密碼。</block>
-  <block id="715be68c1d183df2f2605537fa205329" category="list-text">連按兩下下載的.exe檔案、即可啟動SnapCenter 更新版的功能。</block>
-  <block id="782c158d0db07bc3333c092b1cf2e891" category="paragraph">在您啟動升級之後、系統會執行所有預先檢查、如果不符合最低需求、則會顯示適當的錯誤或警告訊息。您可以忽略警告訊息、然後繼續安裝。不過、錯誤應該修正。</block>
   <block id="e34a8d49d9566ab396f31c7424226785" category="admonition">安裝舊版的還原伺服器時、將繼續使用現有的MySQL Server儲存庫資料庫密碼。SnapCenter SnapCenter</block>
   <block id="f6e8db7e26c18ff77395c70107114b81" category="list-text">按一下*升級*。</block>
-  <block id="b783d3e004ffabe67253f1b39595280f" category="paragraph">在任何階段、如果您按一下*取消*按鈕、升級工作流程都會取消。它不會將SnapCenter 此伺服器復原至先前的狀態。</block>
-  <block id="01d8aef1693c1ab37693630fe558d8cc" category="cell">*最佳實務做法：*您應該先登出再登入SnapCenter 、或關閉再開啟新的瀏覽器、以存取SnapCenter 該GUI。</block>
   <block id="184dc910141b0fc61bfbb5239cf52373" category="list-text">如果外掛程式是使用 Sudo 使用者安裝、您應該複製 _C ： \ProgramData\NetApp\SnapCenter\Package 儲存庫 \SC_UNIT_plugins_checksum ． txt_ 上的 sha224 金鑰、以更新 /etc/sudoers_ 檔案。</block>
   <block id="490e9071957ca8b80f7019e9cb2a8b99" category="list-text">您應該在伺服器主機上執行新的資源探索。</block>
-  <block id="06eee3caed57cb295b8ae731bc4b8dce" category="paragraph">如果伺服器主機的狀態顯示為停止，您可以等待一段時間，然後執行新的探索。您也可以將*主機重新更新間隔*參數（預設值為3、600秒）的值變更為超過10分鐘的任何值。</block>
-  <block id="075ef73eccc4174ca2b3625b875d44d4" category="list-text">如果升級失敗、您應該清理失敗的安裝、重新安裝SnapCenter 舊版的還原功能、然後將NSM資料庫還原至先前的狀態。</block>
   <block id="86b796a66464051399647b9c6f8c917f" category="list-text">升級伺服器主機之後，您也必須先升級外掛程式，才能新增任何儲存系統。</block>
   <block id="bd4996c43fa463bf9a4df1c1fbc6a660" category="summary">外掛程式套件是SnapCenter 隨附於升級版的一部分而發佈。</block>
   <block id="3ddc921ba3599c9da9d32f036cfcb5ca" category="doc">升級外掛程式套件</block>
@@ -9544,4 +9532,23 @@
   <block id="6fea498808c5d97bb251d0bdbc3943eb" category="sidebar">為 Linux 主機上的 SnapCenter 插件服務設定 CA 憑證</block>
   <block id="5c1418af1ce8eeaeb3745b659e1fcfe8" category="sidebar">為 Windows 主機上的 SnapCenter 插件服務設定 CA 憑證</block>
   <block id="c0f10ba70433b3a51c779845827cf459" category="paragraph">如果您使用的是 Windows 叢集設置，您還應該安裝和設定 Windows 遠端管理 (WinRM)。</block>
+  <block id="d3ad73cb89e8cd3b7bc0a7c93d5208e7" category="paragraph">您應該升級SnapCenter伺服器以存取最新版本中提供的最新功能和增強功能。</block>
+  <block id="00145f040529d6d617e2736bd1dc62af" category="list-text">確保在開始升級之前沒有其他操作正在運行。</block>
+  <block id="db24b3a162cda240ba12e6bf377ad275" category="list-text">確保沒有正在執行的作業後，備份SnapCenter儲存庫（MySQL）資料庫。在升級SnapCenter Server 和 Exchange 插件之前建議這樣做。</block>
+  <block id="c2022e6acae48f6d5c3cfaaaeb9da9ad" category="list-text">在SnapCenter伺服器主機或插件主機上備份所有修改後的SnapCenter設定檔。</block>
+  <block id="aaac04103c1097d63b5a7be06269c7d9" category="list-text">如果您在SnapCenter 5.0 中安裝了多個版本的自訂插件，則在升級到 6.0 或更高版本之前，您應該執行 powershell cmdlet 從SnapCenter儲存庫（NSM 資料庫）中刪除所有早期版本的自訂插件（最新版本除外）。</block>
+  <block id="b81129baefdfc97f130bbcee1da98ce6" category="list-text">跑步<block ref="5127bb5818426c9a226f86808b688df6" prefix=" " category="inline-code"></block>並使用 SnapCenterAdmin 角色憑證登入</block>
+  <block id="e11a306a86d86aaffa2d69ff55fb9302" category="list-text">跑步<block ref="4c7adb4c09f9d1c7b33d1cf906860d34" prefix=" " category="inline-code"></block></block>
+  <block id="922142e2126839c9c17b4801781905c0" category="inline-link">升級到SnapCenter 6.0 或更高版本失敗</block>
+  <block id="b644e2b1fd194b2e530e570c13e0336d" category="paragraph">有關更多信息，請參閱<block ref="2f58e6674e7cd1d2be8dd8a7ec9f27f2" category="inline-link-rx"></block> 。</block>
+  <block id="9593a30d4190c278ff6dcb05dd8f4490" category="list-text">在升級期間， SnapCenter執行 SQL 腳本來更新 NSM 資料庫中的 Exchange 數據，將 DAG 和主機短名稱轉換為 FQDN。這僅適用於將SnapCenter Server 與 Exchange 外掛程式一起使用的情況。</block>
+  <block id="8aa9742ec42a665e29a75ccfb11e5a6b" category="list-text">如果您已手動將伺服器主機置於維護模式，則升級後選擇*主機*&gt;*啟動計劃*以使伺服器主機退出維護模式。</block>
+  <block id="99f490d55db332fcfd40fadd27ccf8ec" category="list-text">如果升級失敗，請從 Windows 工作排程器匯出SnapCenter插件主機方案以還原它們。</block>
+  <block id="33265f62f6c00a1c3380415625af38b6" category="list-text">雙擊下載的 .exe 檔案以啟動SnapCenter伺服器升級。</block>
+  <block id="bb2974907b3828758f095aed1369659c" category="paragraph">開始升級後， SnapCenter會執行預檢查。如果系統不符合最低要求， SnapCenter會顯示錯誤或警告訊息。繼續之前修復所有錯誤。您可以忽略警告並繼續。</block>
+  <block id="3210c75ca343f7bd2eddfaaef1a24817" category="list-text">選擇*升級*。</block>
+  <block id="3461b830d23fdc21b572265b20556baa" category="paragraph">如果您在任何階段選擇“*取消*”， SnapCenter將停止升級。  SnapCenter伺服器不會回滾到其先前的狀態。</block>
+  <block id="401632ff9d010db44abc6611b886a1fb" category="paragraph">*最佳實務：*登出並重新登錄，或開啟新的瀏覽器來存取SnapCenter使用者介面。</block>
+  <block id="2894135a685829401e009e2fb1bc8cfe" category="paragraph">如果SnapCenter顯示伺服器主機狀態為已停止，請等待一段時間並執行新的發現。您也可以將 *HostRefreshInterval* 參數的值（預設值為 3600 秒）變更為任何大於 10 分鐘的值。</block>
+  <block id="cc8f8aee65ee74fabf32da5ac0a4b95c" category="list-text">如果升級失敗，請清理失敗的安裝，重新安裝先前的SnapCenter版本，並將 NSM 資料庫還原到先前的狀態。</block>
 </blocks>
