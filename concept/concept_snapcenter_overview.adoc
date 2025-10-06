@@ -34,7 +34,7 @@ summary: 支援簡單、集中化、可擴充的平台、可為在混合雲任�
 * 內部部署於混合雲中、以保護下列項目：
 +
 ** ONTAP FAS 、 AFF 或 ASA 主要系統上的資料、並複寫至 Cloud Volumes ONTAP
-** 位於 ONTAP FAS 、 AFF 或 ASA 主要和次要系統上、並受雲端物件和歸檔儲存保護的資料（使用 BlueXP 備份和還原整合）
+** 位於ONTAP FAS、 AFF或ASA主系統和輔助系統上的數據，使用NetApp備份和恢復整合保護到雲端中的物件和歸檔存儲
 
 
 * 在公有雲中保護下列項目：

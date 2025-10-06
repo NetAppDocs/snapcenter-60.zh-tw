@@ -1077,7 +1077,6 @@
   <block id="3f897d901d24f02777ff0994b7823d1a" category="list-text">位於 ONTAP FAS 、 AFF 或 ASA 主要和次要系統上、並受本機 StorageGRID 物件儲存保護的資料</block>
   <block id="bc549d53e5e7a7aeb8a41511751a99f2" category="list-text">內部部署於混合雲中、以保護下列項目：</block>
   <block id="f5c37d824040662f50cbb8a32d77182d" category="list-text">ONTAP FAS 、 AFF 或 ASA 主要系統上的資料、並複寫至 Cloud Volumes ONTAP</block>
-  <block id="f7b38c62b0e74d318a255bc3094cf531" category="list-text">位於 ONTAP FAS 、 AFF 或 ASA 主要和次要系統上、並受雲端物件和歸檔儲存保護的資料（使用 BlueXP 備份和還原整合）</block>
   <block id="ca5570a253e3c0a27562c65c06bb6125" category="list-text">在公有雲中保護下列項目：</block>
   <block id="b340c2b4a7a978a510c8ebb351622143" category="list-text">資料位於Cloud Volumes ONTAP 僅有ONTAP 的部分系統（前身為《不知道如何解決此問題》）</block>
   <block id="b380e442ff5c6e48e283af8b6f99806f" category="list-text">Amazon FSX ONTAP 上的資料以供支援</block>
@@ -9552,4 +9551,5 @@
   <block id="2894135a685829401e009e2fb1bc8cfe" category="paragraph">如果SnapCenter顯示伺服器主機狀態為已停止，請等待一段時間並執行新的發現。您也可以將 *HostRefreshInterval* 參數的值（預設值為 3600 秒）變更為任何大於 10 分鐘的值。</block>
   <block id="cc8f8aee65ee74fabf32da5ac0a4b95c" category="list-text">如果升級失敗，請清理失敗的安裝，重新安裝先前的SnapCenter版本，並將 NSM 資料庫還原到先前的狀態。</block>
   <block id="88d9e24753477cfb09f25b21c0a59b9e" category="paragraph">SnapCenter完成 Snapshot 作業後對SnapMirror和SnapVault執行更新。 SnapMirror和SnapVault更新作為SnapCenter作業的一部分執行。如果您正在使用SnapMirror主動同步，則對於SnapMirror主動同步和非同步關係，請使用預設SnapMirror或SnapVault方案。</block>
+  <block id="ea1c96f839915f73d25b910bbc92b734" category="list-text">位於ONTAP FAS、 AFF或ASA主系統和輔助系統上的數據，使用NetApp備份和恢復整合保護到雲端中的物件和歸檔存儲</block>
 </blocks>
