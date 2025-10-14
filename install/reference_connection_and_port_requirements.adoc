@@ -37,7 +37,7 @@ summary: 在安裝SnapCenter 完還原伺服器和應用程式或資料庫外掛
 
 
  a| 
-連接埠SnapCenter
+SnapCenter Web 連接埠
  a| 
 8146 （ HTTPS ）、雙向、可自訂、如同 URL \https://server:8146_ 中所列
 

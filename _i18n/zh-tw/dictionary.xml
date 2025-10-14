@@ -2351,7 +2351,6 @@
   <block id="29e256a27c9d420cee02c5cda005de01" category="paragraph">下表列出不同的連接埠及其預設值。</block>
   <block id="3672cca688eb0474cd3fee2add1a2067" category="cell">連接埠類型</block>
   <block id="4d4690457f78e9e5cbfbcd0e36fbeff0" category="cell">預設連接埠</block>
-  <block id="ed00b70cc595a411eff2cc42510a291f" category="paragraph">連接埠SnapCenter</block>
   <block id="b213e31ffc319fa7b61f00a8dfad6e75" category="paragraph">8146 （ HTTPS ）、雙向、可自訂、如同 URL \https://server:8146_ 中所列</block>
   <block id="57f72d0cb40826596637a0e2fc16a647" category="paragraph">用於SnapCenter 在客戶端（SnapCenter 不知使用者）和SnapCenter 伺服器之間進行通訊。也可用於從外掛程式主機到SnapCenter 該伺服器的通訊。</block>
   <block id="c90d9871b4b86a10a62cd2bf2c1ea688" category="inline-link">使用安裝精靈安裝 SnapCenter 伺服器。</block>
@@ -9552,4 +9551,5 @@
   <block id="cc8f8aee65ee74fabf32da5ac0a4b95c" category="list-text">如果升級失敗，請清理失敗的安裝，重新安裝先前的SnapCenter版本，並將 NSM 資料庫還原到先前的狀態。</block>
   <block id="88d9e24753477cfb09f25b21c0a59b9e" category="paragraph">SnapCenter完成 Snapshot 作業後對SnapMirror和SnapVault執行更新。 SnapMirror和SnapVault更新作為SnapCenter作業的一部分執行。如果您正在使用SnapMirror主動同步，則對於SnapMirror主動同步和非同步關係，請使用預設SnapMirror或SnapVault方案。</block>
   <block id="ea1c96f839915f73d25b910bbc92b734" category="list-text">位於ONTAP FAS、 AFF或ASA主系統和輔助系統上的數據，使用NetApp備份和恢復整合保護到雲端中的物件和歸檔存儲</block>
+  <block id="e6f36a956625505e0a3733e3e0073fa0" category="paragraph">SnapCenter Web 連接埠</block>
 </blocks>
